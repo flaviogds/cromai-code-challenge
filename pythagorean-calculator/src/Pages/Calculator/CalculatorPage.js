@@ -2,17 +2,26 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export default class Calculator extends Component{
+    // Componente de Vizualização da pagina da calculador
+    // Gerencia o estado do formulario interno
+    // Link que redireciona para componente Home, na rota "/"
+    // Link que redireciona para componente de Results, na rota "/results"
+    // Injeta o estado do formulario interno como carga/props do component Results
 
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            adjacent_leg: null,
+            opposite_leg: null,
+            hypotenuse: null,
+            unit: "m"
+        };
 
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event) {
-
         let obj = {};
 
         obj[event.target.id] = event.target.value
@@ -28,13 +37,16 @@ export default class Calculator extends Component{
             <>
                 <div className="p-2">
                     <div className="card">
-                        <div className="badge bg-secondary text-wrap fs-2 d-flex justify-content-center m-2 mt-3">Calculadora Pitagórica</div>
+                        <div className="badge bg-warning text-dark text-wrap fs-2 d-flex justify-content-center m-2 mt-3">Calculadora Pitagórica</div>
                         
-                        <img src="" alt="triangle" className="card-img-top"/>
-                        
+                        <small className="text-center mt-2">Hum, aqui nó vamos precisar de ao menos dois lados do triangulo</small>
+
                         <form className="row w-75 m-auto p-5">
                             <div className="mb-3 m-auto">
-                                <label htmlFor="adjacent_leg" className="form-label">Cateto Adjacente</label>
+                                <label htmlFor="adjacent_leg" className="form-label">
+                                    Aresta 1
+                                     <small> (Cateto Adjacente)</small>
+                                </label>
                                 <input 
                                     type="text" 
                                     className="form-control" 
@@ -43,7 +55,10 @@ export default class Calculator extends Component{
                                     onChange={this.handleChange}/>
                             </div>
                             <div className="mb-3 m-auto">
-                                <label htmlFor="opposite_leg" className="form-label">Cateto Oposto</label>
+                                <label htmlFor="opposite_leg" className="form-label">
+                                    Aresta 2
+                                    <small> (Cateto Oposto)</small>
+                                </label>
                                 <input
                                     type="text" 
                                     className="form-control" 
@@ -52,7 +67,10 @@ export default class Calculator extends Component{
                                     onChange={this.handleChange}/>
                             </div>
                             <div className="mb-3 m-auto">
-                                <label htmlFor="hypotenuse" className="form-label">Hipotenusa</label>
+                                <label htmlFor="hypotenuse" className="form-label">
+                                    Aresta 3
+                                    <small> (Hipotenusa)</small>
+                                </label>
                                 <input 
                                     type="text" 
                                     className="form-control" 
@@ -68,6 +86,7 @@ export default class Calculator extends Component{
                                     list="units"
                                     className="form-control" 
                                     id="unit"
+                                    value={this.state.unit}
                                     onChange={this.handleChange}/>
 
                                 <datalist id="units">
@@ -82,9 +101,9 @@ export default class Calculator extends Component{
                                         pathname: "/results",
                                         state: { params: {...this.state} }
                                     }}
-                                    className="btn btn-secondary mt-2 mr-1">Calcular</Link>
+                                    className="btn btn-warning mt-2 mr-1">Calcular</Link>
 
-                                <Link className="btn btn-secondary mt-2" to="/">Voltar</Link>
+                                <Link className="btn btn-warning mt-2" to="/">Voltar</Link>
                             </div>
                         </form>
                     </div>

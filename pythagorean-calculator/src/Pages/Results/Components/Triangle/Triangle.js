@@ -3,13 +3,15 @@ import React, { Component } from 'react'
 import './syle.scss'
 
 export default class Triangle extends Component{
+    // Componente de visualização de resultado, se positivo, da requisição
+
     render(){
         return (
             <>
                 <div className="card d-flex flex-row">
-                    <div className="text-wrap text-breack fs-4 d-flex justify-content-center">
+                    <div className="text-wrap text-break fs-4 d-flex justify-content-center">
                         {!this.props.value.retangle
-                            ? <p>Ops, os valores não correspondem as arestas de um triangulo retangulo</p>
+                            ? <p className="badge bg-primary text-wrap text-break pt-5">Ops, os valores não correspondem as arestas de um triangulo retangulo</p>
                             : null
                         }
                     </div>

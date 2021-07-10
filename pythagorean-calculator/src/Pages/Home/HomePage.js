@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export default class HomePage extends Component{
+    // Componente de Visualização da pagina Home
+    // Alocado na rota "/"
+    // Link de redirecionamento para rota "/calculator"
 
     render(){
         return (
@@ -9,19 +12,32 @@ export default class HomePage extends Component{
                 <div className="container">
                     <div className="card mt-2">
                         <div className="card-body text-center  text-break">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                             when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                             It has survived not only five centuries, but also the leap into electronic typesetting, remaining 
-                             essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets 
-                             containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
-                             PageMaker including versions of Lorem Ipsum.
+
+                            <h2 className="text-center mt-2 mb-2">Hey, Pitagoras?</h2>
+
+                            <p className="text-wrap text-break">
+                                Todo mundo em algum momento, provavelmente na escola,
+                                 já se deparou com as relações métricas de um triângulo retângulo.
+                            </p>
+                            <p className="text-wrap text-break">
+                                E mesmo que você não tenha percebido, essas relações nos cercam constantemente,
+                                escondidas na forma como um GPS calcula a melhor rota, ou até mesmo na forma como você
+                                 escolhe o caminho nos corredores de um supermercado.
+                            </p>
+                            <p className="text-wrap text-break">
+                                Se você não se lembra, relaxe, estamos aqui para ajudar.
+                                Que tal uma calculadora?
+                            </p>
+
+                            <h6>
+                                Se ainda tiver dúvidas ou quiser saber mais, da uma olhada neste link aqui 
+                                 <a href="http://www.ime.unicamp.br/~apmat/teorema-de-pitagoras/" target="blank">Teorema de Pitágoras</a>
+                            </h6>
                         </div>
                         <div className="m-auto mt-4 mb-4">
-                            <Link className="btn btn-secondary btn-lg" to="/calculator">Iniciar</Link>
+                            <Link className="btn btn-warning btn-lg" to="/calculator">Iniciar</Link>
                         </div>
                     </div>
-
                 </div>
             </>
         );

@@ -10,7 +10,6 @@ import ResultsPage from './Pages/Results/ResultsPage';
 import ErrorPage from './Pages/Error/ErrorPage';
 
 function App() {
-
   return (
     <>
       <Navbrand/>

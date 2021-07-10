@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export default class ErrorPage extends Component{
+    //Componente de vizualização de Erro
+    //Recebe como props os parametros, title e message
 
     constructor(props){
         super(props);
@@ -12,10 +14,12 @@ export default class ErrorPage extends Component{
         return( 
             <>
                 <div className="container">
-                    <h3 className="badge bg-dark text-warning text-wrap">{this.state.title}</h3>
-                    <p className="text-break">{this.state.message}</p>
+                    <p className="badge bg-dark text-warning text-wrap fs-2 d-flex justify-content-center m-2 mt-3">{this.state.title}</p>
+                    <p className="text-center text-break mt-5 mb-5">{this.state.message}</p>
 
-                    <Link className="btn btn-secondary mt-2" to="/"> Voltar </Link>
+                    <div className="text-center mt-5">
+                        <Link className="btn btn-warning mt-2" to="/"> Voltar </Link>
+                    </div>
                 </div>
             </>
         );
