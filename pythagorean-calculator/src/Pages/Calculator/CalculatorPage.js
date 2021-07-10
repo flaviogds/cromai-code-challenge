@@ -6,11 +6,7 @@ export default class Calculator extends Component{
     constructor(props) {
         super(props);
 
-        this.state = {
-            arestaA: '',
-            arestaB: '',
-            arestaC: ''
-        };
+        this.state = {};
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -38,32 +34,46 @@ export default class Calculator extends Component{
                         
                         <form className="row w-75 m-auto p-5">
                             <div className="mb-3 m-auto">
-                                <label htmlFor="arestaA" className="form-label">Aresta A</label>
+                                <label htmlFor="adjacent_leg" className="form-label">Cateto Adjacente</label>
                                 <input 
                                     type="text" 
                                     className="form-control" 
-                                    id="arestaA" 
-                                    aria-describedby="aresta"
-                                    value={this.state.arestA}
+                                    id="adjacent_leg" 
+                                    value={this.state.adjacent_leg}
                                     onChange={this.handleChange}/>
                             </div>
                             <div className="mb-3 m-auto">
-                                <label htmlFor="arestaB" className="form-label">Aresta B</label>
+                                <label htmlFor="opposite_leg" className="form-label">Cateto Oposto</label>
                                 <input
                                     type="text" 
                                     className="form-control" 
-                                    id="arestaB"
-                                    value={this.state.arestB} 
+                                    id="opposite_leg"
+                                    value={this.state.opposite_leg} 
                                     onChange={this.handleChange}/>
                             </div>
                             <div className="mb-3 m-auto">
-                                <label htmlFor="arestaC" className="form-label">Aresta C</label>
+                                <label htmlFor="hypotenuse" className="form-label">Hipotenusa</label>
                                 <input 
                                     type="text" 
                                     className="form-control" 
-                                    id="arestaC"
-                                    value={this.state.arestC} 
+                                    id="hypotenuse"
+                                    value={this.state.hypotenuse} 
                                     onChange={this.handleChange}/>
+                            </div>
+
+                            <div className="mb-3 m-auto">
+                                <label htmlFor="unit" className="form-label">Unidade</label>
+                                <input 
+                                    type="text" 
+                                    list="units"
+                                    className="form-control" 
+                                    id="unit"
+                                    onChange={this.handleChange}/>
+
+                                <datalist id="units">
+                                    <option value="m"/>
+                                    <option value="cm"/>
+                                </datalist>
                             </div>
 
                             <div className="m-auto mb-3 mt-3 row">

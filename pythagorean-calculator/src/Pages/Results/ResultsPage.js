@@ -1,32 +1,35 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+
+import Loading from '../../Components/Loading/Loading'
+import Triangle from './Components/Triangle/Triangle';
 
 export default class ResultsPage extends Component{
 
     constructor(props) {
         super(props);
         this.state = {
-          error: null,
+          error: false,
           isLoaded: false,
-          result: false
+          result: {},
+          params: {...props.location.state.params}
         };
-
       }
 
-    /*console.log(props.location.state.params) */
-
     componentDidMount() {
-        fetch("http://localhost:3000/response")
+        fetch("http://localhost:5000/calculator", {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(this.state.params)
+        })
           .then(res => res.json())
           .then(
             (result) => {
               this.setState({
                 isLoaded: true,
-                result: result.teste
+                result: result
               });
             },
-            // Nota: É importante lidar com os erros aqui
-            // em vez de um bloco catch() para não recebermos
-            // exceções de erros dos componentes.
             (error) => {
               this.setState({
                 isLoaded: true,
@@ -37,23 +40,28 @@ export default class ResultsPage extends Component{
       }
 
     render(){
+      console.log(this.state.result)
         return(
             <>
-                <div className="card">
-                    <img src="" alt="" className="card-img-top"/>
-                    <div className="card-body text-center">
-                        <p>Cateto Adjacente</p>
-                        <p>Cateto Oposto</p>
-                        <p>Hipotenusa</p>
-
-                        <p>Angulo AB</p>
-                        <p>Angulo AC</p>
-                        <p>Angulo BC</p>
-
-                    </div>
-                    <div className="card-footer">
-                    </div>
-                </div>
+              { !this.state.isLoaded
+                ? <Loading/>
+                : this.state.error
+                  ? <Redirect 
+                        to={{
+                        pathname: "/error",
+                        state: {
+                          title: "Ops! algo inesperado aconteceu.",
+                          message: ""
+                        }
+                      }}/>
+                  : !this.state.result.triangle
+                      ? <Triangle value={this.state.result}/>
+                      : <Redirect 
+                          to={{
+                          pathname: "/error",
+                          state: {...this.state.result}
+                        }}/>
+              }
             </>
         );
     }
